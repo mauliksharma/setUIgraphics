@@ -23,57 +23,6 @@ class SetCard: UIView {
     @IBInspectable
     var shade: Int = 1 { didSet { setNeedsDisplay(); setNeedsLayout() } }
     
-    class Illustration: UIView {
-        
-        var shapeID: Int = 1
-        var colorID: Int = 1
-        var shadeID: Int = 1
-        
-        func getPath(shapeID: Int) -> UIBezierPath {
-            let path = UIBezierPath()
-            switch shapeID {
-            case 1:
-                path.move(to: CGPoint(x: bounds.midX, y: bounds.minY))
-                path.addLine(to: CGPoint(x: bounds.minX, y: bounds.midY))
-                path.addLine(to: CGPoint(x: bounds.midX, y: bounds.maxY))
-                path.addLine(to: CGPoint(x: bounds.maxX, y: bounds.midY))
-                path.close()
-            default:
-                break
-            }
-            return path
-        }
-        
-        var color: UIColor {
-            switch colorID {
-            case 1:
-                return .red
-            case 2:
-                return .green
-            case 3:
-                return .purple
-            default:
-                return .black
-            }
-        }
-        
-        override func draw(_ rect: CGRect) {
-            let path = getPath(shapeID: shapeID)
-            path.addClip()
-            color.setFill()
-            color.setStroke()
-            switch shadeID {
-            case 1:
-                path.fill()
-            case 2:
-                path.stroke()
-            case 3:
-                break //Add code here
-            default:
-                break
-            }
-        }
-    }
     
     func createIllustrationSubView() -> Illustration {
         let illustration = Illustration()
@@ -84,15 +33,21 @@ class SetCard: UIView {
         return illustration
     }
     
+    func configureIllustrationSubView(_ illustration: Illustration) {
+        illustration.isOpaque = false
+        illustration.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0)
+        illustration.frame.size = CGSize(width: illustrationWidth, height: illustrationHeight)
+    }
+    
+    lazy var illustrationSubView = createIllustrationSubView()
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         
         switch number {
         case 1:
-            let illustrationSubView = createIllustrationSubView()
+            configureIllustrationSubView(illustrationSubView)
             illustrationSubView.frame.origin = bounds.origin.offsetBy(dx: illustrationOffsetFromLeft, dy: illustrationOffsetFromTopFor1)
-            illustrationSubView.frame.size.width = illustrationWidth
-            illustrationSubView.frame.size.height = illustrationHeight
         default:
             break //Add code here
         }
@@ -104,16 +59,6 @@ class SetCard: UIView {
         setNeedsLayout()
     }
     
-    
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
-    
-    
 }
 
 
@@ -123,6 +68,8 @@ extension SetCard {
         static let illustrationHeightToBoundsHeight: CGFloat = 0.25
         static let illustrationOffsetFromBoundsX: CGFloat = 0.125
         static let illustrationOffsetFromBoundsYFor1: CGFloat = 0.375
+        
+        
         
     }
     
@@ -142,15 +89,9 @@ extension SetCard {
         return bounds.size.height * SizeRatio.illustrationOffsetFromBoundsYFor1
     }
     
+    
 }
 
-extension CGRect {
-    func zoom(by scale: CGFloat) -> CGRect {
-        let newWidth = width * scale
-        let newHeight = height * scale
-        return insetBy(dx: (width - newWidth) / 2, dy: (height - newHeight) / 2)
-    }
-}
 
 extension CGPoint {
     func offsetBy(dx: CGFloat, dy: CGFloat) -> CGPoint {

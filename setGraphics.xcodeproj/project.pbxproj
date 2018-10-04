@@ -13,6 +13,7 @@
 		E30673322165028D0000161A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E30673312165028D0000161A /* Assets.xcassets */; };
 		E30673352165028D0000161A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E30673332165028D0000161A /* LaunchScreen.storyboard */; };
 		E306733D216502E80000161A /* SetCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E306733C216502E80000161A /* SetCard.swift */; };
+		E3B953B12165D39A0033034E /* Illustration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B953B02165D39A0033034E /* Illustration.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		E30673342165028D0000161A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E30673362165028D0000161A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E306733C216502E80000161A /* SetCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCard.swift; sourceTree = "<group>"; };
+		E3B953B02165D39A0033034E /* Illustration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Illustration.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				E306732A2165028C0000161A /* AppDelegate.swift */,
 				E306732C2165028C0000161A /* ViewController.swift */,
 				E306733C216502E80000161A /* SetCard.swift */,
+				E3B953B02165D39A0033034E /* Illustration.swift */,
 				E306732E2165028C0000161A /* Main.storyboard */,
 				E30673312165028D0000161A /* Assets.xcassets */,
 				E30673332165028D0000161A /* LaunchScreen.storyboard */,
@@ -141,6 +144,7 @@
 				E306733D216502E80000161A /* SetCard.swift in Sources */,
 				E306732D2165028C0000161A /* ViewController.swift in Sources */,
 				E306732B2165028C0000161A /* AppDelegate.swift in Sources */,
+				E3B953B12165D39A0033034E /* Illustration.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
