@@ -14,7 +14,7 @@ class Illustration: UIView {
     var colorID: Int = 1
     var shadeID: Int = 1
     
-    func getPath(shapeID: Int) -> UIBezierPath {
+    func getPath(shapeID: Int) -> UIBezierPath? {
         var path = UIBezierPath()
         switch shapeID {
         case 1:
@@ -41,7 +41,7 @@ class Illustration: UIView {
             path.addCurve(to: pointRelativeToBound(xToWidth: 0.05, yToHeight: 0.40), controlPoint1: pointRelativeToBound(xToWidth: 0.00, yToHeight: 1.10), controlPoint2: pointRelativeToBound(xToWidth: 0.005, yToHeight: 0.60))
             path.close()
         default:
-            break
+            return nil
         }
         return path
     }
@@ -60,27 +60,28 @@ class Illustration: UIView {
     }
     
     override func draw(_ rect: CGRect) {
-        let path = getPath(shapeID: shapeID)
-        path.addClip()
-        color.setFill()
-        color.setStroke()
-        switch shadeID {
-        case 1:
-            path.fill()
-        case 2:
-            path.lineWidth = pathLineWidth
-            path.stroke()
-        case 3:
-            path.lineWidth = pathLineWidth
-            path.stroke()
-            var stripeOffset = bounds.minX
-            while stripeOffset < bounds.maxX {
-                let stripePath = UIBezierPath(rect: CGRect(x: stripeOffset, y: bounds.minY, width: stripeWidth, height: bounds.size.height))
-                stripePath.fill()
-                stripeOffset += (stripeWidth + stripeSpacing)
+        if let path = getPath(shapeID: shapeID) {
+            path.addClip()
+            color.setFill()
+            color.setStroke()
+            switch shadeID {
+            case 1:
+                path.fill()
+            case 2:
+                path.lineWidth = pathLineWidth
+                path.stroke()
+            case 3:
+                path.lineWidth = pathLineWidth
+                path.stroke()
+                var stripeOffset = bounds.minX
+                while stripeOffset < bounds.maxX {
+                    let stripePath = UIBezierPath(rect: CGRect(x: stripeOffset, y: bounds.minY, width: stripeWidth, height: bounds.size.height))
+                    stripePath.fill()
+                    stripeOffset += (stripeWidth + stripeSpacing)
+                }
+            default:
+                break
             }
-        default:
-            break
         }
     }
 }
