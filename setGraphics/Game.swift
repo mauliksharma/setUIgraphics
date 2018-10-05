@@ -39,6 +39,10 @@ class Game {
         }
     }
     
+    func shuffleLoadedCards() {
+        loadedCards.shuffle()
+    }
+    
     var selectedCards = [Card]()
     var matchedCards = [Card]()
     

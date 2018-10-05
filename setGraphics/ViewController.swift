@@ -12,6 +12,8 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var scoreLabel: UILabel!
     
+    @IBOutlet weak var setTitle: UILabel!
+    
     @IBAction func dealMoreCards(_ sender: UIButton) {
         game.deal3NewCards()
         updateViewFromModel()
@@ -25,6 +27,25 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var cardsGrid: CardsGridView! {
         didSet {
+            let swipe = UISwipeGestureRecognizer(target: self, action: #selector(gridSwipeUpHandler(_:)))
+            swipe.direction = [.up]
+            cardsGrid.addGestureRecognizer(swipe)
+            
+            let rotate = UIRotationGestureRecognizer(target: self, action: #selector(gridRotateHandler(_:)))
+            cardsGrid.addGestureRecognizer(rotate)
+            
+            updateViewFromModel()
+        }
+    }
+    
+    @objc func gridSwipeUpHandler(_ sender: UISwipeGestureRecognizer) {
+        game.deal3NewCards()
+        updateViewFromModel()
+    }
+    
+    @objc func gridRotateHandler(_ sender: UISwipeGestureRecognizer) {
+        if sender.state == .ended {
+            game.shuffleLoadedCards()
             updateViewFromModel()
         }
     }
@@ -49,6 +70,7 @@ class ViewController: UIViewController {
                 cardView.layer.borderWidth = 2.0
                 cardView.layer.borderColor = UIColor.red.cgColor
             }
+            setTitle?.textColor = !game.matchedCards.isEmpty ? UIColor.blue : UIColor.white
             cardViews += [cardView]
         }
         cardsGrid.cardViews = cardViews
