@@ -20,7 +20,7 @@ class ViewController: UIViewController {
     @IBAction func startAgain(_ sender: UIButton) {
         game = Game()
         updateViewFromModel()
-        scoreLabel.text = "SCORE: " + (game.score < 10 ? "0" : "") + "\(game.score)"
+        updateScoreLabelText()
     }
     
     @IBOutlet weak var cardsGrid: CardsGridView! {
@@ -31,15 +31,42 @@ class ViewController: UIViewController {
     
     var game = Game()
     
+    var cardViews = [CardView]()
+    
     func updateViewFromModel() {
-        var cardViews = [CardView]()
+        cardViews = []
         for index in game.loadedCards.indices {
-            if let card = game.loadedCards[index] {
-                let cardView = createSetCardView(shape: card.shape, number: card.number, color: card.color, shade: card.shade)
-                cardViews += [cardView]
+            let card = game.loadedCards[index]
+            let cardView = createSetCardView(shape: card.shape, number: card.number, color: card.color, shade: card.shade)
+            let tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.handleCardTap(recognizer:)))
+            cardView.addGestureRecognizer(tap)
+            
+            if game.matchedCards.contains(card) {
+                cardView.layer.borderWidth = 2.0
+                cardView.layer.borderColor = UIColor.blue.cgColor
             }
+            else if game.selectedCards.contains(card) {
+                cardView.layer.borderWidth = 2.0
+                cardView.layer.borderColor = UIColor.red.cgColor
+            }
+            cardViews += [cardView]
         }
         cardsGrid.cardViews = cardViews
+    }
+    
+    @objc func handleCardTap(recognizer: UITapGestureRecognizer) {
+        if recognizer.state == .ended {
+            let cardView = recognizer.view! as! CardView
+            if let index = cardViews.index(of: cardView) {
+                game.chooseCard(at: index)
+            }
+            updateViewFromModel()
+            updateScoreLabelText()
+        }
+    }
+    
+    func updateScoreLabelText() {
+        scoreLabel.text = "SCORE: \(game.score)"
     }
     
     func createSetCardView(shape: Int, number: Int, color: Int, shade: Int) -> CardView {

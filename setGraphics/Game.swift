@@ -15,7 +15,7 @@ class Game {
     var sortedDeck = [Card]()
     var shuffledDeck = [Card]()
     
-    var loadedCards = [Card?]()
+    var loadedCards = [Card]()
     
     init() {
         for shape in 0...2 {
@@ -61,7 +61,12 @@ class Game {
     func replaceCards() {
         for matchedCard in matchedCards {
             if let index = loadedCards.index(of: matchedCard) {
-                loadedCards[index] = getNewCard()
+                if let card = getNewCard() {
+                    loadedCards[index] = card
+                }
+                else {
+                    loadedCards.remove(at: index)
+                }
             }
         }
         matchedCards.removeAll()
@@ -72,49 +77,48 @@ class Game {
             replaceCards()
         }
         else if shuffledDeck.count >= 3 {
-            loadedCards.append(contentsOf: [getNewCard(), getNewCard(), getNewCard()])
+            loadedCards.append(contentsOf: [getNewCard()!, getNewCard()!, getNewCard()!])
         }
     }
     
     func chooseCard(at index: Int) {
-        if let chosenCard = loadedCards[index] {
-            if !matchedCards.contains(chosenCard) {
-                if !selectedCards.contains(chosenCard) {  //selecting :-
-                    if selectedCards.count == 2 {   //selecting 3rd card and testing for match
-                        selectedCards.append(chosenCard)
-                        for cardToMatch in selectedCards {
-                            symbolSet.insert(cardToMatch.shape)
-                            numberSet.insert(cardToMatch.number)
-                            colorSet.insert(cardToMatch.color)
-                            shadeSet.insert(cardToMatch.shade)
-                        }
-                        if (symbolSet.count != 2) && (numberSet.count != 2) && (colorSet.count != 2) && (shadeSet.count != 2) {
-                            for card in selectedCards {
-                                matchedCards.append(card)
-                            }
-                            score += 3
-                        }
-                        else {
-                            score -= 5
-                        }
-                        clearSets()
+        let chosenCard = loadedCards[index]
+        if !matchedCards.contains(chosenCard) {
+            if !selectedCards.contains(chosenCard) {  //selecting :-
+                if selectedCards.count == 2 {   //selecting 3rd card and testing for match
+                    selectedCards.append(chosenCard)
+                    for cardToMatch in selectedCards {
+                        symbolSet.insert(cardToMatch.shape)
+                        numberSet.insert(cardToMatch.number)
+                        colorSet.insert(cardToMatch.color)
+                        shadeSet.insert(cardToMatch.shade)
                     }
-                    else if selectedCards.count == 3 {  //selecting fresh card after 3 cards tested for match
-                        if !matchedCards.isEmpty {
-                            replaceCards()
+                    if (symbolSet.count != 2) && (numberSet.count != 2) && (colorSet.count != 2) && (shadeSet.count != 2) {
+                        for card in selectedCards {
+                            matchedCards.append(card)
                         }
-                        selectedCards = [chosenCard]
-                        
+                        score += 3
                     }
-                    else {  //if no card or 1 card is selected
-                        selectedCards.append(chosenCard)
+                    else {
+                        score -= 5
                     }
+                    clearSets()
                 }
-                else {  //deselecting :-
-                    if selectedCards.count < 3 {
-                        selectedCards = selectedCards.filter(){$0 != chosenCard}
-                        score -= 1
+                else if selectedCards.count == 3 {  //selecting fresh card after 3 cards tested for match
+                    if !matchedCards.isEmpty {
+                        replaceCards()
                     }
+                    selectedCards = [chosenCard]
+                    
+                }
+                else {  //if no card or 1 card is selected
+                    selectedCards.append(chosenCard)
+                }
+            }
+            else {  //deselecting :-
+                if selectedCards.count < 3 {
+                    selectedCards = selectedCards.filter(){$0 != chosenCard}
+                    score -= 1
                 }
             }
         }
