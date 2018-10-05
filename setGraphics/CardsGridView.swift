@@ -17,6 +17,9 @@ class CardsGridView: UIView {
     
     func createCardSubviews( ) -> [SetCard] {
         var cardSubViews = [SetCard]()
+        for subview in subviews {
+            subview.removeFromSuperview()
+        }
         for index in cardViews.indices {
             let cardView = cardViews[index]
             addSubview(cardView)
@@ -25,7 +28,9 @@ class CardsGridView: UIView {
         return cardSubViews
     }
     
-    lazy var cardSubViews = createCardSubviews()
+    var cardSubViews: [SetCard] {
+        return createCardSubviews()
+    }
     
     func configureCardSubViews(_ cardSubViews: [SetCard]) {
         for index in cardSubViews.indices {

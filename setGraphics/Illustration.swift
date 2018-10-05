@@ -88,7 +88,7 @@ class Illustration: UIView {
 
 extension Illustration {
     struct SizeRatio {
-        static let pathLineWidthToBoundsHeight: CGFloat = 0.20
+        static let pathLineWidthToBoundsHeight: CGFloat = 0.25
         static let ovalCornerRadiusToBoundsHeight: CGFloat = 0.5
     }
     
@@ -105,7 +105,7 @@ extension Illustration {
     }
     
     var stripeWidth: CGFloat {
-        return pathLineWidth / 3
+        return pathLineWidth / 2.5
     }
     
     func pointRelativeToBound(xToWidth: CGFloat, yToHeight: CGFloat) -> CGPoint {
