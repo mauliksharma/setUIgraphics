@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="portrait">
+    <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -14,47 +14,71 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="setGraphics" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Kgr-oS-RE3" customClass="SetCard" customModule="setGraphics" customModuleProvider="target">
-                                <rect key="frame" x="16" y="147.5" width="382" height="611"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WWW-Rk-PXw" customClass="CardsGridView" customModule="setGraphics" customModuleProvider="target">
+                                <rect key="frame" x="16" y="66" width="343" height="509"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="Kgr-oS-RE3" secondAttribute="height" multiplier="5:8" id="Jek-nk-X7n"/>
-                                    <constraint firstAttribute="width" priority="750" constant="800" id="TMZ-Si-vJk"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="shape">
-                                        <integer key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="number">
-                                        <integer key="value" value="3"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="color">
-                                        <integer key="value" value="4"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="shade">
-                                        <integer key="value" value="2"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="75" translatesAutoresizingMaskIntoConstraints="NO" id="PKq-JD-0KM">
+                                <rect key="frame" x="20" y="615" width="335" height="36"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G4b-Ad-eEG">
+                                        <rect key="frame" x="0.0" y="0.0" width="130" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <state key="normal" title="MORE CARDS"/>
+                                        <connections>
+                                            <action selector="dealMoreCards:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8Pf-AN-rHb"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8S1-Vz-MTd">
+                                        <rect key="frame" x="205" y="0.0" width="130" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <state key="normal" title="START AGAIN"/>
+                                        <connections>
+                                            <action selector="startAgain:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9ls-XR-CEx"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SCORE : 00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mfj-2b-1ot">
+                                <rect key="frame" x="132.5" y="583" width="110" height="24"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="S  E  T" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ct2-NZ-mtt">
+                                <rect key="frame" x="154" y="28" width="67.5" height="30"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <color key="textColor" red="0.57045853140000002" green="0.57047235969999999" blue="0.57046490910000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.45138680930000002" green="0.99309605359999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Kgr-oS-RE3" secondAttribute="bottom" constant="16" id="6Ms-fX-q3B"/>
-                            <constraint firstItem="Kgr-oS-RE3" firstAttribute="top" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="Ds7-lv-pa5"/>
-                            <constraint firstItem="Kgr-oS-RE3" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="ERG-HJ-o1s"/>
-                            <constraint firstItem="Kgr-oS-RE3" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="Sh0-ee-1iL"/>
-                            <constraint firstItem="Kgr-oS-RE3" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Zuo-Z4-yoK"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Kgr-oS-RE3" secondAttribute="trailing" constant="16" id="qgo-eh-UcE"/>
+                            <constraint firstItem="PKq-JD-0KM" firstAttribute="top" secondItem="mfj-2b-1ot" secondAttribute="bottom" constant="8" symbolic="YES" id="3Pe-ho-KMN"/>
+                            <constraint firstItem="WWW-Rk-PXw" firstAttribute="top" secondItem="ct2-NZ-mtt" secondAttribute="bottom" constant="8" symbolic="YES" id="5Md-Gd-cWb"/>
+                            <constraint firstItem="mfj-2b-1ot" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="7Ky-NH-f6W"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="PKq-JD-0KM" secondAttribute="bottom" constant="16" id="SW5-Nj-sba"/>
+                            <constraint firstItem="mfj-2b-1ot" firstAttribute="top" secondItem="WWW-Rk-PXw" secondAttribute="bottom" constant="8" symbolic="YES" id="YKn-Vr-i9c"/>
+                            <constraint firstItem="ct2-NZ-mtt" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="axy-c8-81m"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="PKq-JD-0KM" secondAttribute="trailing" constant="20" id="fMd-IM-vEb"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="WWW-Rk-PXw" secondAttribute="trailing" constant="16" id="hL0-AW-72z"/>
+                            <constraint firstItem="WWW-Rk-PXw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="nQk-Ds-V6g"/>
+                            <constraint firstItem="ct2-NZ-mtt" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="qLa-Iw-t8X"/>
+                            <constraint firstItem="PKq-JD-0KM" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="zaz-n2-M2z"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="cardsGrid" destination="WWW-Rk-PXw" id="EbO-hf-NXh"/>
+                        <outlet property="scoreLabel" destination="mfj-2b-1ot" id="dDY-mC-Au1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="133.5832083958021"/>
+            <point key="canvasLocation" x="135.19999999999999" y="132.68365817091455"/>
         </scene>
     </scenes>
 </document>

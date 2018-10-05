@@ -10,22 +10,22 @@ import UIKit
 
 class Illustration: UIView {
     
-    var shapeID: Int = 1
-    var colorID: Int = 1
-    var shadeID: Int = 1
+    var shapeID: Int = 0
+    var colorID: Int = 0
+    var shadeID: Int = 0
     
     func getPath(shapeID: Int) -> UIBezierPath? {
         var path = UIBezierPath()
         switch shapeID {
-        case 1:
+        case 0:
             path.move(to: CGPoint(x: bounds.midX, y: bounds.minY))
             path.addLine(to: CGPoint(x: bounds.minX, y: bounds.midY))
             path.addLine(to: CGPoint(x: bounds.midX, y: bounds.maxY))
             path.addLine(to: CGPoint(x: bounds.maxX, y: bounds.midY))
             path.close()
-        case 2:
+        case 1:
             path = UIBezierPath(roundedRect: bounds, cornerRadius: ovalCornerRadius)
-        case 3:
+        case 2:
             path.move(to: pointRelativeToBound(xToWidth: 0.05, yToHeight: 0.40))
             
             path.addCurve(to: pointRelativeToBound(xToWidth: 0.35, yToHeight: 0.25), controlPoint1: pointRelativeToBound(xToWidth: 0.09, yToHeight: 0.15), controlPoint2: pointRelativeToBound(xToWidth: 0.18, yToHeight: 0.10))
@@ -48,11 +48,11 @@ class Illustration: UIView {
     
     var color: UIColor {
         switch colorID {
-        case 1:
+        case 0:
             return .red
-        case 2:
+        case 1:
             return .green
-        case 3:
+        case 2:
             return .purple
         default:
             return .black
@@ -65,12 +65,12 @@ class Illustration: UIView {
             color.setFill()
             color.setStroke()
             switch shadeID {
-            case 1:
+            case 0:
                 path.fill()
-            case 2:
+            case 1:
                 path.lineWidth = pathLineWidth
                 path.stroke()
-            case 3:
+            case 2:
                 path.lineWidth = pathLineWidth
                 path.stroke()
                 var stripeOffset = bounds.minX
@@ -88,7 +88,7 @@ class Illustration: UIView {
 
 extension Illustration {
     struct SizeRatio {
-        static let pathLineWidthToBoundsHeight: CGFloat = 0.15
+        static let pathLineWidthToBoundsHeight: CGFloat = 0.20
         static let ovalCornerRadiusToBoundsHeight: CGFloat = 0.5
     }
     
@@ -101,11 +101,11 @@ extension Illustration {
     }
     
     var stripeSpacing: CGFloat {
-        return pathLineWidth / 2
+        return pathLineWidth / 1.5
     }
     
     var stripeWidth: CGFloat {
-        return pathLineWidth / 5
+        return pathLineWidth / 3
     }
     
     func pointRelativeToBound(xToWidth: CGFloat, yToHeight: CGFloat) -> CGPoint {

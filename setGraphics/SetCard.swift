@@ -12,18 +12,18 @@ import UIKit
 class SetCard: UIView {
     
     @IBInspectable
-    var shape: Int = 1 { didSet { setNeedsDisplay(); setNeedsLayout() } }
+    var shape: Int = 0 { didSet { setNeedsDisplay(); setNeedsLayout() } }
     @IBInspectable
-    var number: Int = 1 { didSet { setNeedsDisplay(); setNeedsLayout() } }
+    var number: Int = 0 { didSet { setNeedsDisplay(); setNeedsLayout() } }
     @IBInspectable
-    var color: Int = 1 { didSet { setNeedsDisplay(); setNeedsLayout() } }
+    var color: Int = 0 { didSet { setNeedsDisplay(); setNeedsLayout() } }
     @IBInspectable
-    var shade: Int = 1 { didSet { setNeedsDisplay(); setNeedsLayout() } }
+    var shade: Int = 0 { didSet { setNeedsDisplay(); setNeedsLayout() } }
     
     func createIllustrationSubViews() -> [Illustration] {
         var subViewsArray = [Illustration]()
-        for times in 1...number {
-            guard times <= 3 else { return [] }
+        for times in 0...number {
+            guard times < 3 else { return [] }
             let illustration = Illustration()
             illustration.shapeID = shape
             illustration.colorID = color
@@ -76,11 +76,11 @@ extension SetCard {
     }
     var illustrationOffsetFromTop: CGFloat {
         switch number {
-        case 1:
+        case 0:
             return bounds.size.height * 0.40
-        case 2:
+        case 1:
             return bounds.size.height * 0.25
-        case 3:
+        case 2:
             return bounds.size.height * 0.10
         default:
             return 0
