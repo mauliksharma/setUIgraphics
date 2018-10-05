@@ -18,23 +18,23 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WWW-Rk-PXw" customClass="CardsGridView" customModule="setGraphics" customModuleProvider="target">
-                                <rect key="frame" x="16" y="66" width="343" height="509"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="16" y="66" width="343" height="529.5"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="75" translatesAutoresizingMaskIntoConstraints="NO" id="PKq-JD-0KM">
-                                <rect key="frame" x="20" y="615" width="335" height="36"/>
+                                <rect key="frame" x="20" y="629" width="335" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G4b-Ad-eEG">
-                                        <rect key="frame" x="0.0" y="0.0" width="130" height="36"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="130" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                         <state key="normal" title="MORE CARDS"/>
                                         <connections>
                                             <action selector="dealMoreCards:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8Pf-AN-rHb"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8S1-Vz-MTd">
-                                        <rect key="frame" x="205" y="0.0" width="130" height="36"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <rect key="frame" x="205" y="0.0" width="130" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                         <state key="normal" title="START AGAIN"/>
                                         <connections>
                                             <action selector="startAgain:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9ls-XR-CEx"/>
@@ -43,24 +43,24 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SCORE : 00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mfj-2b-1ot">
-                                <rect key="frame" x="132.5" y="583" width="110" height="24"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <rect key="frame" x="138" y="603.5" width="99.5" height="21.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="S  E  T" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ct2-NZ-mtt">
-                                <rect key="frame" x="154" y="28" width="67.5" height="30"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
-                                <color key="textColor" red="0.57045853140000002" green="0.57047235969999999" blue="0.57046490910000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="153.5" y="28" width="68.5" height="30"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="25"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.81077703003624157" green="0.77640010631378975" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="PKq-JD-0KM" firstAttribute="top" secondItem="mfj-2b-1ot" secondAttribute="bottom" constant="8" symbolic="YES" id="3Pe-ho-KMN"/>
+                            <constraint firstItem="PKq-JD-0KM" firstAttribute="top" secondItem="mfj-2b-1ot" secondAttribute="bottom" constant="4" id="3Pe-ho-KMN"/>
                             <constraint firstItem="WWW-Rk-PXw" firstAttribute="top" secondItem="ct2-NZ-mtt" secondAttribute="bottom" constant="8" symbolic="YES" id="5Md-Gd-cWb"/>
                             <constraint firstItem="mfj-2b-1ot" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="7Ky-NH-f6W"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="PKq-JD-0KM" secondAttribute="bottom" constant="16" id="SW5-Nj-sba"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="PKq-JD-0KM" secondAttribute="bottom" constant="8" id="SW5-Nj-sba"/>
                             <constraint firstItem="mfj-2b-1ot" firstAttribute="top" secondItem="WWW-Rk-PXw" secondAttribute="bottom" constant="8" symbolic="YES" id="YKn-Vr-i9c"/>
                             <constraint firstItem="ct2-NZ-mtt" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="axy-c8-81m"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="PKq-JD-0KM" secondAttribute="trailing" constant="20" id="fMd-IM-vEb"/>

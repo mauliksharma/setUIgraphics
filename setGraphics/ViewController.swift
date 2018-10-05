@@ -20,7 +20,7 @@ class ViewController: UIViewController {
     @IBAction func startAgain(_ sender: UIButton) {
         game = Game()
         updateViewFromModel()
-        scoreLabel.text = "SCORE " + (game.score < 10 ? "0" : "") + "\(game.score)"
+        scoreLabel.text = "SCORE: " + (game.score < 10 ? "0" : "") + "\(game.score)"
     }
     
     @IBOutlet weak var cardsGrid: CardsGridView! {
@@ -32,19 +32,18 @@ class ViewController: UIViewController {
     var game = Game()
     
     func updateViewFromModel() {
-        var cardViews = [SetCard]()
+        var cardViews = [CardView]()
         for index in game.loadedCards.indices {
             if let card = game.loadedCards[index] {
                 let cardView = createSetCardView(shape: card.shape, number: card.number, color: card.color, shade: card.shade)
-                print(card)
                 cardViews += [cardView]
             }
         }
         cardsGrid.cardViews = cardViews
     }
     
-    func createSetCardView(shape: Int, number: Int, color: Int, shade: Int) -> SetCard {
-        let card = SetCard()
+    func createSetCardView(shape: Int, number: Int, color: Int, shade: Int) -> CardView {
+        let card = CardView()
         card.shape = shape
         card.color = color
         card.number = number

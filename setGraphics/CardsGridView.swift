@@ -8,41 +8,29 @@
 
 import UIKit
 
-//@IBDesignable
 class CardsGridView: UIView {
     
-    var cardViews = [SetCard]() { didSet { setNeedsDisplay(); setNeedsLayout() } }
+    var cardViews = [CardView]() { didSet { setNeedsDisplay(); setNeedsLayout() } }
     
     var cardsGrid = Grid(layout: .aspectRatio(5/8))
     
-    func createCardSubviews( ) -> [SetCard] {
-        var cardSubViews = [SetCard]()
-        for subview in subviews {
-            subview.removeFromSuperview()
-        }
-        for index in cardViews.indices {
-            let cardView = cardViews[index]
-            addSubview(cardView)
-            cardSubViews.append(cardView)
-        }
-        return cardSubViews
-    }
-    
-    var cardSubViews: [SetCard] {
-        return createCardSubviews()
-    }
-    
-    func configureCardSubViews(_ cardSubViews: [SetCard]) {
+    func configureCardSubViews(_ cardSubViews: [CardView]) {
         for index in cardSubViews.indices {
-            cardSubViews[index].frame = cardsGrid[index]!.zoom(by: 0.95)
-            cardSubViews[index].backgroundColor = #colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)
+            cardSubViews[index].frame = cardsGrid[index]!.zoom(by: 0.9)
+            cardSubViews[index].backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         }
     }
     
     override func layoutSubviews() {
+        for subview in subviews {
+            subview.removeFromSuperview()
+        }
+        for cardView in cardViews {
+            addSubview(cardView)
+        }
         cardsGrid.frame = bounds
-        cardsGrid.cellCount = cardViews.count
-        configureCardSubViews(cardSubViews)
+        cardsGrid.cellCount = subviews.count
+        configureCardSubViews(cardViews)
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {

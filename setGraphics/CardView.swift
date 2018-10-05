@@ -9,7 +9,7 @@
 import UIKit
 
 @IBDesignable
-class SetCard: UIView {
+class CardView: UIView {
     
     @IBInspectable
     var shape: Int = 0 { didSet { setNeedsDisplay(); setNeedsLayout() } }
@@ -58,7 +58,7 @@ class SetCard: UIView {
     }
 }
 
-extension SetCard {
+extension CardView {
     struct SizeRatio {
         static let illustrationWidthToBoundsWidth: CGFloat = 0.70
         static let illustrationHeightToBoundsHeight: CGFloat = 0.20
