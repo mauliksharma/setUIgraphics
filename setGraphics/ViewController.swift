@@ -22,7 +22,6 @@ class ViewController: UIViewController {
     @IBAction func startAgain(_ sender: UIButton) {
         game = Game()
         updateViewFromModel()
-        updateScoreLabelText()
     }
     
     @IBOutlet weak var cardsGrid: CardsGridView! {
@@ -63,17 +62,18 @@ class ViewController: UIViewController {
             cardView.addGestureRecognizer(tap)
             
             if game.matchedCards.contains(card) {
-                cardView.layer.borderWidth = 2.0
+                cardView.layer.borderWidth = 3.0
                 cardView.layer.borderColor = UIColor.blue.cgColor
             }
             else if game.selectedCards.contains(card) {
-                cardView.layer.borderWidth = 2.0
+                cardView.layer.borderWidth = 3.0
                 cardView.layer.borderColor = UIColor.red.cgColor
             }
-            setTitle?.textColor = !game.matchedCards.isEmpty ? UIColor.blue : UIColor.white
             cardViews += [cardView]
         }
         cardsGrid.cardViews = cardViews
+        setTitle?.textColor = !game.matchedCards.isEmpty ? UIColor.blue : UIColor.white
+        scoreLabel?.text = "SCORE: \(game.score)"
     }
     
     @objc func handleCardTap(recognizer: UITapGestureRecognizer) {
@@ -83,12 +83,7 @@ class ViewController: UIViewController {
                 game.chooseCard(at: index)
             }
             updateViewFromModel()
-            updateScoreLabelText()
         }
-    }
-    
-    func updateScoreLabelText() {
-        scoreLabel.text = "SCORE: \(game.score)"
     }
     
     func createSetCardView(shape: Int, number: Int, color: Int, shade: Int) -> CardView {
@@ -100,10 +95,5 @@ class ViewController: UIViewController {
         return card
     }
     
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
 }
 
