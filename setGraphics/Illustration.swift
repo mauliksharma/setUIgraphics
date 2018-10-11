@@ -8,7 +8,6 @@
 
 import UIKit
 
-@IBDesignable
 class Illustration: UIView {
     
     var shapeID: Int = 0

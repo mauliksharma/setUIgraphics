@@ -10,28 +10,31 @@ import UIKit
 
 class CardsGridView: UIView {
     
-    var cardViewsInPlay = [CardView]() { didSet { setNeedsLayout() } }
+    var cardViews = [CardView]() { didSet { setNeedsLayout() } }
     
     var cardsGrid = Grid(layout: .aspectRatio(5/8))
     
-    func configureCardSubViews(_ cardSubViews: [CardView]) {
-        for index in cardSubViews.indices {
-            cardSubViews[index].frame = cardsGrid[index]!.zoom(by: 0.9)
+    func configureCardSubViews() {
+        for index in cardViews.indices {
+            cardViews[index].frame = cardsGrid[index]!.zoom(by: 0.9)
         }
     }
     
-    func addCardViewsInPlay(_ cardViews: [CardView]) {
-        cardViews.forEach {
-            addSubview($0)
-            cardViewsInPlay.append($0)
+    func createCardSubviews() {
+        for subview in subviews {
+            subview.removeFromSuperview()
+        }
+        for cardView in cardViews {
+            addSubview(cardView)
         }
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         cardsGrid.frame = bounds
+        createCardSubviews()
         cardsGrid.cellCount = subviews.count
-        configureCardSubViews(cardViewsInPlay)
+        configureCardSubViews()
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {

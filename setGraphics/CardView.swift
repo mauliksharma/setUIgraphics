@@ -10,19 +10,15 @@ import UIKit
 
 class CardView: UIView {
     
-    var shape: Int = 0 { didSet { setNeedsDisplay(); setNeedsLayout() } }
+    var shape: Int = 0 { didSet { setNeedsLayout() } }
     
-    var number: Int = 0 { didSet { setNeedsDisplay(); setNeedsLayout() } }
+    var number: Int = 0 { didSet { setNeedsLayout() } }
     
-    var color: Int = 0 { didSet { setNeedsDisplay(); setNeedsLayout() } }
+    var color: Int = 0 { didSet { setNeedsLayout() } }
     
-    var shade: Int = 0 { didSet { setNeedsDisplay(); setNeedsLayout() } }
+    var shade: Int = 0 { didSet { setNeedsLayout() } }
     
-    var isFaceUp: Bool = true { didSet { setNeedsDisplay(); setNeedsLayout() } }
-    
-    var isSelected: Bool = false { didSet { setNeedsDisplay(); setNeedsLayout() } }
-    
-    var isMatched: Bool = false { didSet { setNeedsDisplay(); setNeedsLayout() } }
+    var isFaceUp: Bool = true { didSet { setNeedsLayout() } }
     
     func createIllustrationSubViews() -> [Illustration] {
         var subViewsArray = [Illustration]()
@@ -32,6 +28,8 @@ class CardView: UIView {
             illustration.shapeID = shape
             illustration.colorID = color
             illustration.shadeID = shade
+            illustration.isOpaque = false
+            illustration.backgroundColor = UIColor.clear
             addSubview(illustration)
             subViewsArray.append(illustration)
         }
@@ -39,8 +37,6 @@ class CardView: UIView {
     }
     
     func configureIllustrationSubView(_ illustration: Illustration) {
-        illustration.isOpaque = false
-        illustration.backgroundColor = UIColor.clear
         illustration.frame.size = CGSize(width: illustrationWidth, height: illustrationHeight)
     }
     
@@ -60,17 +56,6 @@ class CardView: UIView {
                     offset += illustrationHeight + spaceBetweenIllustrations
                 }
             }
-        }
-        if isMatched {
-            layer.borderWidth = 3.0
-            layer.borderColor = UIColor.blue.cgColor
-        }
-        else if isSelected {
-            layer.borderWidth = 3.0
-            layer.borderColor = UIColor.red.cgColor
-        }
-        else {
-            layer.borderWidth = 0
         }
     }
     
@@ -118,4 +103,3 @@ extension CGPoint {
         return CGPoint(x: x + dx, y: y + dy)
     }
 }
-
