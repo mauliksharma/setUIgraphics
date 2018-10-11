@@ -8,6 +8,7 @@
 
 import UIKit
 
+@IBDesignable
 class Illustration: UIView {
     
     var shapeID: Int = 0
@@ -46,7 +47,7 @@ class Illustration: UIView {
         return path
     }
     
-    var color: UIColor {
+    var color: UIColor? {
         switch colorID {
         case 0:
             return .red
@@ -55,15 +56,15 @@ class Illustration: UIView {
         case 2:
             return .purple
         default:
-            return .black
+            return nil
         }
     }
     
     override func draw(_ rect: CGRect) {
         if let path = getPath(shapeID: shapeID) {
             path.addClip()
-            color.setFill()
-            color.setStroke()
+            color?.setFill()
+            color?.setStroke()
             switch shadeID {
             case 0:
                 path.fill()

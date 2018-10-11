@@ -8,17 +8,21 @@
 
 import UIKit
 
-@IBDesignable
 class CardView: UIView {
     
-    @IBInspectable
     var shape: Int = 0 { didSet { setNeedsDisplay(); setNeedsLayout() } }
-    @IBInspectable
+    
     var number: Int = 0 { didSet { setNeedsDisplay(); setNeedsLayout() } }
-    @IBInspectable
+    
     var color: Int = 0 { didSet { setNeedsDisplay(); setNeedsLayout() } }
-    @IBInspectable
+    
     var shade: Int = 0 { didSet { setNeedsDisplay(); setNeedsLayout() } }
+    
+    var isFaceUp: Bool = true { didSet { setNeedsDisplay(); setNeedsLayout() } }
+    
+    var isSelected: Bool = false { didSet { setNeedsDisplay(); setNeedsLayout() } }
+    
+    var isMatched: Bool = false { didSet { setNeedsDisplay(); setNeedsLayout() } }
     
     func createIllustrationSubViews() -> [Illustration] {
         var subViewsArray = [Illustration]()
@@ -44,11 +48,29 @@ class CardView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        var offset = illustrationOffsetFromTop
-        for illustrationSubView in illustrationSubViewsArray {
-            configureIllustrationSubView(illustrationSubView)
-            illustrationSubView.frame.origin = bounds.origin.offsetBy(dx: illustrationOffsetFromLeft, dy: offset)
-            offset += illustrationHeight + spaceBetweenIllustrations
+        if !isFaceUp {
+            backgroundColor = UIColor.darkGray
+        }
+        else {
+            backgroundColor = UIColor.white
+            if var offset = illustrationOffsetFromTop {
+                for illustrationSubView in illustrationSubViewsArray {
+                    configureIllustrationSubView(illustrationSubView)
+                    illustrationSubView.frame.origin = bounds.origin.offsetBy(dx: illustrationOffsetFromLeft, dy: offset)
+                    offset += illustrationHeight + spaceBetweenIllustrations
+                }
+            }
+        }
+        if isMatched {
+            layer.borderWidth = 3.0
+            layer.borderColor = UIColor.blue.cgColor
+        }
+        else if isSelected {
+            layer.borderWidth = 3.0
+            layer.borderColor = UIColor.red.cgColor
+        }
+        else {
+            layer.borderWidth = 0
         }
     }
     
@@ -74,7 +96,7 @@ extension CardView {
     var illustrationOffsetFromLeft: CGFloat {
         return bounds.size.width * SizeRatio.illustrationOffsetFromBoundsLeft
     }
-    var illustrationOffsetFromTop: CGFloat {
+    var illustrationOffsetFromTop: CGFloat? {
         switch number {
         case 0:
             return bounds.size.height * 0.40
@@ -83,7 +105,7 @@ extension CardView {
         case 2:
             return bounds.size.height * 0.10
         default:
-            return 0
+            return nil
         }
     }
     var spaceBetweenIllustrations: CGFloat {
@@ -96,3 +118,4 @@ extension CGPoint {
         return CGPoint(x: x + dx, y: y + dy)
     }
 }
+
